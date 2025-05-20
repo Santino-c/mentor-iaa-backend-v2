@@ -1,4 +1,4 @@
-import { Configuration, OpenAIApi } from "openai";
+const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -6,9 +6,10 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const allowedOrigin = "https://santino-c.github.io";
 
+  // CORS preflight
   if (req.method === "OPTIONS") {
     res.setHeader("Access-Control-Allow-Origin", allowedOrigin);
     res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -16,6 +17,7 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
+  // CORS normal
   res.setHeader("Access-Control-Allow-Origin", allowedOrigin);
 
   if (req.method !== "POST") {
@@ -40,4 +42,4 @@ export default async function handler(req, res) {
     console.error("OpenAI error:", err.response?.data || err.message);
     res.status(500).json({ error: "Failed to generate response" });
   }
-}
+};
