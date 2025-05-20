@@ -1,3 +1,4 @@
+// Chat handler
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
