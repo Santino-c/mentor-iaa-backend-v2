@@ -1,4 +1,3 @@
-// Chat handler
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
@@ -10,7 +9,7 @@ const openai = new OpenAIApi(configuration);
 export default async function handler(req, res) {
   const allowedOrigin = "https://santino-c.github.io";
 
-  // Preflight (CORS) OPTIONS request
+  // CORS preflight
   if (req.method === "OPTIONS") {
     res.setHeader("Access-Control-Allow-Origin", allowedOrigin);
     res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -18,7 +17,7 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  // Normal CORS header
+  // CORS para peticiones normales
   res.setHeader("Access-Control-Allow-Origin", allowedOrigin);
 
   if (req.method !== "POST") {
