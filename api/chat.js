@@ -10,7 +10,7 @@ const openai = new OpenAIApi(configuration);
 
 export default async function handler(req, res) {
   if (req.method === "OPTIONS") {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", "https://santino-c.github.io");
     res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
     return res.status(200).end();
@@ -40,4 +40,11 @@ export default async function handler(req, res) {
     console.error("OpenAI error:", err.response?.data || err.message);
     res.status(500).json({ error: "Failed to generate response" });
   }
+}
+if (req.method === "OPTIONS") {
+  res.setHeader("Access-Control-Allow-Origin", "https://santino-c.github.io");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.status(200).end();
+  return;
 }
