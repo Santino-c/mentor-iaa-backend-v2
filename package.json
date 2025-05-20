@@ -1,6 +1,6 @@
 {
   "name": "mentor-iaa-backend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "dependencies": {
     "openai": "^4.0.0"
